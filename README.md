@@ -14,6 +14,10 @@ Kuploy is a wrapper around helm that adds a lot of convenient features. It allow
 * Automatically add and refresh chart repositories
 * Point to the correct location in a chart in case of an error
 
+## Installation
+
+pip install kuploy
+
 ## Usage
 
 Deploy all charts from a yaml:

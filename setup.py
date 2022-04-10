@@ -8,6 +8,7 @@ setuptools.setup(
      version='0.1',
      scripts=['kuploy'] ,
      author="Michael Wyraz",
+     author_email="kuploy@michael.wyraz.de",
      description="A handy helm3 deployment tool",
      long_description=long_description,
    long_description_content_type="text/markdown",

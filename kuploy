@@ -108,7 +108,7 @@ def get_raw_secret(commands,kubeconfig,namespace,secret):
 	return yaml.load(result,Loader=yaml.SafeLoader)['data']
 
 def get_secret_master_key(commands,kubeconfig):
-	secret=get_raw_secret(commands,kubeconfig,'kube-system','evermind-deployment-tool')
+	secret=get_raw_secret(commands,kubeconfig,'kube-system','kuploy-master-key')
 	if secret is not None:
 		master_key_b64=base64.b64decode(secret['master-key'])
 		# master key is b64 encoded twice - one my us, once by kubernetes
@@ -193,7 +193,7 @@ def init_secret_masterkey(commands,kubeconfig,predefined_master_key=None):
 		'create',
 		'secret',
 		'generic',
-		'evermind-deployment-tool',
+		'kuploy-master-key',
 		]
 
 	if kubeconfig:

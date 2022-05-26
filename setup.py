@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
      name='kuploy',  
-     version='0.1.0',
+     version='0.2.0',
      scripts=['kuploy'] ,
      author="Michael Wyraz",
      author_email="kuploy@michael.wyraz.de",

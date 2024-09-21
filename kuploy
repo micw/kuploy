@@ -512,7 +512,7 @@ def deploy_chart(commands,kubeconfig,basedir,chart,args):
 		print('Running: %s'%subprocess.list2cmdline(command))
 
 	yamlError=None
-	p=re.compile('^Error:.* YAML parse error on (.+?): error converting YAML to JSON: yaml: line (\d+): (.*)$')
+	p=re.compile('^Error:.* YAML parse error on (.+?): error converting YAML to JSON: yaml: line (\\d+): (.*)$')
 	# run process, capture stderr
 	process=subprocess.Popen(command,stderr=subprocess.PIPE)
 	while process.poll() is None:
@@ -707,9 +707,9 @@ def show_serviceaccount_token(commands,kubeconfig,namespace,serviceaccount):
 def get_helm_version(helm_command):
 	try:
 		result=subprocess.check_output([helm_command,'version','--client'],stderr=subprocess.STDOUT).decode().strip()
-		if (re.compile('.*{SemVer:"v2\.\d+\.\d+",.*',re.DOTALL).match(result)):
+		if (re.compile('.*{SemVer:"v2\\.\\d+\\.\\d+",.*',re.DOTALL).match(result)):
 			return "helm2"
-		if (re.compile('.*{Version:"v3\.\d+\.\d+",.*',re.DOTALL).match(result)):
+		if (re.compile('.*{Version:"v?3\\.\\d+\\.\\d+",.*',re.DOTALL).match(result)):
 			return "helm3"
 		print("Unable to parse helm version for %s: %s"%(helm_command,result))
 

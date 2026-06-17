@@ -486,8 +486,9 @@ def deploy_chart(commands,kubeconfig,basedir,chart,args):
 	if namespace:
 		command+=['--namespace',namespace]
 
-	if 'version' in chart:
-		command+=['--version',chart['version']]
+	version=chart.get('version') or chartinfo.get('version')
+	if version:
+		command+=['--version',version]
 
 	if 'vars' in chart:
 		print('"vars" is deprecated. Please use "values" instead.')
@@ -539,8 +540,8 @@ def deploy_chart(commands,kubeconfig,basedir,chart,args):
 					command+=[chartname,chartpath]
 				if 'namespace' in chart:
 					command+=['--namespace',chart['namespace']]
-				if 'version' in chart:
-					command+=['--version',chart['version']]
+				if version:
+					command+=['--version',version]
 				if 'vars' in chart:
 					command+=['--values',varsfile]
 				rendered_template=subprocess.check_output(command,stderr=subprocess.STDOUT)
